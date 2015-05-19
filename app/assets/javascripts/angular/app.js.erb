@@ -1,0 +1,16 @@
+'use strict'; // Make sure you don't have syntax errors
+
+// var app = angular.module('appName', ['oneDependency']);
+var app = angular.module('coconut', ['ngRoute']);
+
+app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+  // Configure Angular Routes
+  $routeProvider.
+    when('/test', {
+      templateUrl: "<%= asset_path('home/index.html') %>",
+      controller: 'HomeCtrl'
+    })
+    
+
+    // $locationProvider.html5Mode(true);
+}]);

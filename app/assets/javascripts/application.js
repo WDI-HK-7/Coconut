@@ -12,5 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require underscore/underscore
+//= require angular/angular
+//= require angular-route/angular-route
+//= require ng-file-upload/ng-file-upload
+//= require ng-file-upload/ng-file-upload-shim
 //= require_tree .
