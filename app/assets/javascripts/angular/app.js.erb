@@ -9,7 +9,16 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     when('/test', {
       templateUrl: "<%= asset_path('home/index.html') %>",
       controller: 'HomeCtrl'
+    }).
+
+  // --------------- Posts index ----------------
+    
+    when('/posts', {
+      templateUrl: "<%= asset_path('posts/index.html') %>",
+      controller: 'PostCtrl'
     })
+  
+  
     
 
     // $locationProvider.html5Mode(true);
