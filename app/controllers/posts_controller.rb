@@ -2,6 +2,11 @@ class PostsController < ApplicationController
   
 # before_action :authenticate_user!
   
+  def around
+    post = Post.find_by_id(params[:id])
+    @posts = Post.where("latitude > ?" , post.latitude - 0.001).where("latitude < ?" , post.latitude + 0.001).where("longitude > ?" , post.longitude - 0.001).where("longitude < ?" , post.longitude + 0.001)
+  end
+
   def index
     
     @posts = Post.all

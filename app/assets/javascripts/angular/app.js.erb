@@ -23,6 +23,13 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     when('/new_posts', {
       templateUrl: "<%= asset_path('posts/new.html') %>",
       controller: 'PostsNewCtrl'
+    }.
+
+  // --------------- Live Feed ----------------
+
+    when('/live_feed', {
+      templateUrl: "<%= asset_path('posts/live_feed.html') %>",
+      controller: 'LiveFeedCtrl'
     })
   
   
