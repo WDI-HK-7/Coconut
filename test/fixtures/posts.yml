@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  latitude: 9.99
+  longitude: 9.99
+  taken_at: 2015-05-19 17:29:40
+
+two:
+  latitude: 9.99
+  longitude: 9.99
+  taken_at: 2015-05-19 17:29:40
