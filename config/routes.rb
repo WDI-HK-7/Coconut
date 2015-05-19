@@ -22,8 +22,8 @@ Rails.application.routes.draw do
   #   resources :products
 
   root 'home#index'
-	
-	resources :posts
+  
+  resources :posts
 
   # Example resource route with options:
   #   resources :products do

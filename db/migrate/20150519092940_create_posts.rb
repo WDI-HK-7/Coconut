@@ -4,8 +4,8 @@ class CreatePosts < ActiveRecord::Migration
       t.decimal :latitude, precision: 9, scale: 6
       t.decimal :longitude, precision: 9, scale: 6
       t.datetime :taken_at
-			t.belongs_to :user, index: true, foreign_key: true
-			t.string :description
+      t.belongs_to :user, index: true, foreign_key: true
+      t.string :description
 
       t.timestamps null: false
     end

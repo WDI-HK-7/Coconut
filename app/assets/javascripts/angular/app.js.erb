@@ -11,14 +11,14 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
       controller: 'HomeCtrl'
     }).
 
-	// -------------------------------------------------- Posts index
-		
-		when('/posts', {
+  // --------------- Posts index ----------------
+    
+    when('/posts', {
       templateUrl: "<%= asset_path('posts/index.html') %>",
       controller: 'PostCtrl'
     })
-	
-	
+  
+  
     
 
     // $locationProvider.html5Mode(true);
