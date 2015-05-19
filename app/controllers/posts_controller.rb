@@ -51,7 +51,7 @@ class PostsController < ApplicationController
       end
     else
       render :json => {
-        message: "You are not signed in!"
+        message: "You are not authorized!"
       }
     end
   
@@ -66,7 +66,6 @@ class PostsController < ApplicationController
         message: "Can't find post with id #{params[:id]}"
       }
     else
-    
       if @post.destroy
         render :json => {
           message: "message deleted"
@@ -76,7 +75,6 @@ class PostsController < ApplicationController
           message: "not deleted"
         }
       end
-    
     end
 
   end
