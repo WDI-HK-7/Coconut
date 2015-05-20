@@ -11,11 +11,30 @@ class PostsController < ApplicationController
   
   def create
     
+    file = params[:post][:picture].tempfile
+
+    exifr = EXIFR::JPEG.new(file)
+
+    longitude = (exifr.gps_longitude[0].to_r.to_f + ( exifr.gps_longitude[1].to_r.to_f / 60 ) + (exifr.gps_longitude[2].to_r.to_f / 3600 )).round(6)
+
+    latitude = (exifr.gps_latitude[0].to_r.to_f + ( exifr.gps_latitude[1].to_r.to_f / 60 ) + (exifr.gps_latitude[2].to_r.to_f / 3600 )).round(6)
+
+    if exifr.gps_longitude_ref == "W"
+      longitude = longitude * -1
+    end
+
+    if exifr.gps_latitude_ref == "S"
+      latitude = latitude * -1
+    end
+
     @post = Post.new(post_params)
 
+    @post.longitude = longitude
+    @post.latitude = latitude
+    @post.taken_at = exifr.date_time
     
     if @post.save
-      render :json => { message: "saved" }
+      render :json => { message: "saved", post: @post}
     else
       render :json => { message: "not saved" }
     end

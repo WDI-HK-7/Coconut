@@ -26,6 +26,8 @@ gem 'devise'
 
 # Use Paperclip for BE File Upload
 gem 'paperclip'
+# Use exifr to read metadata in user uploaded images
+gem 'exifr'
 
 
 # Use jquery as the JavaScript library
