@@ -14,7 +14,7 @@ class PostsController < ApplicationController
     file = params[:post][:picture].tempfile
     exifr = EXIFR::JPEG.new(file)
     
-    converted = conversion(exifr)
+    converted = convert_coordinates_to_float(exifr)
 
     @post = Post.new(post_params)
 
@@ -95,14 +95,14 @@ class PostsController < ApplicationController
     params.require(:post).permit(:description, :picture)
   end
 
-  def convert_DD(coordinates)
+  def convert_to_decimal(coordinates)
     (coordinates[0].to_r.to_f + ( coordinates[1].to_r.to_f / 60 ) + (coordinates[2].to_r.to_f / 3600 )).round(6)  
   end
 
-  def conversion(metadata)
+  def convert_coordinates_to_float(metadata)
 
-    longitude = convert_DD(metadata.gps_longitude)
-    latitude = convert_DD(metadata.gps_latitude)
+    longitude = convert_to_decimal(metadata.gps_longitude)
+    latitude = convert_to_decimal(metadata.gps_latitude)
 
     if metadata.gps_longitude_ref == "W"
       longitude = longitude * -1
