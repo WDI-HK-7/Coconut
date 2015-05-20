@@ -2,7 +2,7 @@ app.controller('PostCtrl', ['$scope', '$http', function($scope, $http) {
   
                             
   var url = "<%= ENV['URL'] %>" || "http://localhost:3000/";
-  console.log("URL ==== <%= ENV['URL'] %>");
+
   $http.get(url + 'posts').success(function(response) {
     console.log(response);
     $scope.posts = response;
