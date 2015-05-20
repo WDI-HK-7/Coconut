@@ -24,6 +24,11 @@ gem 'bootstrap-sass', '~> 3.3.0'
 # Devise incarge of authentication
 gem 'devise'
 
+# Use Paperclip for BE File Upload
+gem 'paperclip'
+# Use exifr to read metadata in user uploaded images
+gem 'exifr'
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

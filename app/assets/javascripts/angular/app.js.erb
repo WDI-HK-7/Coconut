@@ -1,7 +1,7 @@
 'use strict'; // Make sure you don't have syntax errors
 
 // var app = angular.module('appName', ['oneDependency']);
-var app = angular.module('coconut', ['ngRoute']);
+var app = angular.module('coconut', ['ngRoute', 'ngFileUpload']);
 
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   // Configure Angular Routes
@@ -16,6 +16,13 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     when('/posts', {
       templateUrl: "<%= asset_path('posts/index.html') %>",
       controller: 'PostCtrl'
+    }).
+
+  // --------------- Create Post ----------------
+
+    when('/new_posts', {
+      templateUrl: "<%= asset_path('posts/new.html') %>",
+      controller: 'PostsNewCtrl'
     })
   
   

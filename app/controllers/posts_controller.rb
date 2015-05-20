@@ -10,11 +10,21 @@ class PostsController < ApplicationController
   end
   
   def create
+
+    file = params[:post][:picture].tempfile
+    exifr = EXIFR::JPEG.new(file)
     
-    @post = current_user.posts.new(post_params)
+    converted = convert_coordinates_to_float(exifr)
+
+    @post = Post.new(post_params)
+
+
+    @post.longitude = converted[:longitude]
+    @post.latitude = converted[:latitude]
+    @post.taken_at = exifr.date_time
     
     if @post.save
-      render :json => { message: "saved" }
+      render :json => { message: "saved", post: @post}
     else
       render :json => { message: "not saved" }
     end
@@ -82,7 +92,32 @@ class PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:title, :content, :category, :picture)
+    params.require(:post).permit(:description, :picture)
+  end
+
+  def convert_to_decimal(coordinates)
+    (coordinates[0].to_r.to_f + ( coordinates[1].to_r.to_f / 60 ) + (coordinates[2].to_r.to_f / 3600 )).round(6)  
+  end
+
+  def convert_coordinates_to_float(metadata)
+
+    longitude = convert_to_decimal(metadata.gps_longitude)
+    latitude = convert_to_decimal(metadata.gps_latitude)
+
+    if metadata.gps_longitude_ref == "W"
+      longitude = longitude * -1
+    end
+
+    if metadata.gps_latitude_ref == "S"
+      latitude = latitude * -1
+    end
+
+    convertedCoordinates = Hash.new
+
+    convertedCoordinates[:longitude] = longitude
+    convertedCoordinates[:latitude] = latitude
+    return convertedCoordinates
+
   end
 
 end

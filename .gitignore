@@ -14,3 +14,4 @@
 
 # ignore bower components that are installed
 /bower_components/
+/public/system/posts/pictures/

@@ -2,6 +2,9 @@
   <div class="row">
     <div ng-repeat="post in posts">
       <div>{{ post.description }}</div>
+      <div class="col-xs-12">
+        <img ng-src="{{ post.picture }}" class="img-responsive">
+      </div>
     </div>
   </div>
 </div>
