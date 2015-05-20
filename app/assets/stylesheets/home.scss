@@ -2,3 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#icon {
+  width: 5%;
+  height: 100%;
+}
+
+#navbar-collapse > ul > li > a {
+  color: #965A3E;
+}
+
+#input-panel {
+//    padding: 9px 0;
+    position:fixed;
+    z-index: 2000;
+    left:20px;
+//    top:60px;
+//    width:250px;
+}

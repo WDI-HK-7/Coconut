@@ -1,3 +1,15 @@
-app.controller('HomeCtrl', ['$scope', function($scope){
-  $scope.message = "Angular is Working!";
+app.controller('HomeCtrl', ['$scope', '$http', function($scope, $http){
+  
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000/";
+  
+  $http.get(url + 'posts').success(function(response) {
+    console.log(response);
+    $scope.posts = response;
+  });
+  
+//  $http.get(url + 'users/' + ).success(function(response) {
+//    console.log(response);
+//    $scope.posts = response;
+//  });
+  
 }]);
