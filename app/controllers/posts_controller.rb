@@ -11,7 +11,8 @@ class PostsController < ApplicationController
   
   def create
     
-    @post = current_user.posts.new(post_params)
+    @post = Post.new(post_params)
+
     
     if @post.save
       render :json => { message: "saved" }
@@ -82,7 +83,7 @@ class PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:title, :content, :category, :picture)
+    params.require(:post).permit(:description, :picture)
   end
 
 end
