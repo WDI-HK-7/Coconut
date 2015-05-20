@@ -10,27 +10,17 @@ class PostsController < ApplicationController
   end
   
   def create
-    
+
     file = params[:post][:picture].tempfile
-
     exifr = EXIFR::JPEG.new(file)
-
-    longitude = (exifr.gps_longitude[0].to_r.to_f + ( exifr.gps_longitude[1].to_r.to_f / 60 ) + (exifr.gps_longitude[2].to_r.to_f / 3600 )).round(6)
-
-    latitude = (exifr.gps_latitude[0].to_r.to_f + ( exifr.gps_latitude[1].to_r.to_f / 60 ) + (exifr.gps_latitude[2].to_r.to_f / 3600 )).round(6)
-
-    if exifr.gps_longitude_ref == "W"
-      longitude = longitude * -1
-    end
-
-    if exifr.gps_latitude_ref == "S"
-      latitude = latitude * -1
-    end
+    
+    converted = conversion(exifr)
 
     @post = Post.new(post_params)
 
-    @post.longitude = longitude
-    @post.latitude = latitude
+
+    @post.longitude = converted[:longitude]
+    @post.latitude = converted[:latitude]
     @post.taken_at = exifr.date_time
     
     if @post.save
@@ -103,6 +93,31 @@ class PostsController < ApplicationController
   
   def post_params
     params.require(:post).permit(:description, :picture)
+  end
+
+  def convert_DD(coordinates)
+    (coordinates[0].to_r.to_f + ( coordinates[1].to_r.to_f / 60 ) + (coordinates[2].to_r.to_f / 3600 )).round(6)  
+  end
+
+  def conversion(metadata)
+
+    longitude = convert_DD(metadata.gps_longitude)
+    latitude = convert_DD(metadata.gps_latitude)
+
+    if metadata.gps_longitude_ref == "W"
+      longitude = longitude * -1
+    end
+
+    if metadata.gps_latitude_ref == "S"
+      latitude = latitude * -1
+    end
+
+    convertedCoordinates = Hash.new
+
+    convertedCoordinates[:longitude] = longitude
+    convertedCoordinates[:latitude] = latitude
+    return convertedCoordinates
+
   end
 
 end
