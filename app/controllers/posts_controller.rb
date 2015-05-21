@@ -18,7 +18,7 @@ class PostsController < ApplicationController
     search_radius = 0.001
     post = Post.order(taken_at: :desc).first
     if post.taken_at > (DateTime.now - 1.hour)
-      @posts = live_feed(post.id,search_radius)
+      @posts = live_feed(post.id, search_radius)
     else
       @posts = Post.all.includes(:comments)
     end

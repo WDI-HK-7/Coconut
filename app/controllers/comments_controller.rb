@@ -1,9 +1,9 @@
 class CommentsController < ApplicationController
   def create
-    @post = current_user.comments.new(comment_params)
-    @post.post_id = params[:post_id]
+    @comment = current_user.comments.new(comment_params)
+    @comment.post_id = params[:post_id]
 
-    if @post.save
+    if @comment.save
       render :json => {
         :message => { :message => "Successful", :success => true }
       }
