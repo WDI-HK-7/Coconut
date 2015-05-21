@@ -11,6 +11,20 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
       controller: 'HomeCtrl'
     }).
 
+  // --------------- User Login/SignUp page -----
+
+    when('/', {
+      templateUrl: "<%= asset_path('users/landing.html') %>",
+      controller: 'LandingPageCtrl'
+    }).
+
+  // --------------- User Profile Page ----------
+
+    when('/users/:id/profile', {
+      templateUrl: "<%= asset_path('users/profile.html') %>",
+      controller: 'UserProfileCtrl'
+    }).
+
   // --------------- Posts index ----------------
     
     when('/posts', {

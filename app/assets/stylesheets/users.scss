@@ -1,0 +1,24 @@
+.front-page-container {
+  background-color: green;
+  color: black;
+}
+
+#front-page-pic {
+  margin-top: 50px;
+}
+
+.front-signin {
+  height: 150px;
+  background-color: blue;
+}
+
+.front-signup {
+  height: 380px;
+  background-color: red;
+}
+
+.front-signup, .front-signin {
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 4px;
+}
