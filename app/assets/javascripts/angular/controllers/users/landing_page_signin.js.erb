@@ -1,5 +1,5 @@
 app.controller('LoginCtrl', ['$scope', '$http', '$location', function($scope, $http, $location){
-	
+  
   $scope.user = {};
   $scope.form = {};
 
@@ -16,7 +16,7 @@ app.controller('LoginCtrl', ['$scope', '$http', '$location', function($scope, $h
     $http.post(url + "users/sign_in", data).success(function(response){
       console.log("You Are Now Signed In To Coconut...");
 
-      $location.path('/users/:id/profile'); //Need To Determine where to go after signin.
+      $location.path('/home'); //Need To Determine where to go after signin.
     });
   };
 

@@ -12,13 +12,25 @@ app.controller('SignupCtrl', ['$scope', '$http', '$location', function($scope, $
       user: $scope.user
     };
 
-    $http.post(url + 'users', data).success(function(response){
+    $http.post(url + "users", data).success(function(response){
       console.log(response);
 
-      $location.path('/'); //Need to take them to signin after signing up.
+      if (response.success) {
+        
+        var data2 = {
+          user: {
+            email: data.user.email,
+            password: data.user.password
+          }
+        }
+
+        $http.post(url + "users/sign_in", data2).success(function(response){
+          console.log("You Are Now Signed In To Coconut...");
+          console.log(response);
+
+          $location.path('/home');
+        });
+      };
     });
   };
-
-
-
 }]);
