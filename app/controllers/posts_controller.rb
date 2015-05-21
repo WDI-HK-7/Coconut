@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     @posts = Post.where("latitude > ?" , post.latitude - 0.001).where("latitude < ?" , post.latitude + 0.001).where("longitude > ?" , post.longitude - 0.001).where("longitude < ?" , post.longitude + 0.001)
   end
 
-  def live_feed(postId,searchRadius)
+  def live_feed(postId, searchRadius)
     post = Post.find_by_id(postId)
     return Post.order(taken_at: :desc).where("latitude > ?" , post.latitude - searchRadius).where("latitude < ?" , post.latitude + searchRadius).where("longitude > ?" , post.longitude - searchRadius).where("longitude < ?" , post.longitude + searchRadius).where("taken_at > ?", post.taken_at - 1.hour).includes(:comments)
   end
