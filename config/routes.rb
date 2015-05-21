@@ -23,8 +23,9 @@ Rails.application.routes.draw do
 
   root 'home#index'
   
-  resources :posts
-  resources :comments
+  resources :posts do
+    resources :comments
+  end
 
   get 'around/:id' => 'posts#around'
 
