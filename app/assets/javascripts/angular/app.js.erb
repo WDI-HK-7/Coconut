@@ -25,11 +25,11 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
       controller: 'PostsNewCtrl'
     }).
 
-  // --------------- Live Feed ----------------
+  // --------------- Around ----------------
 
-    when('/live_feed', {
-      templateUrl: "<%= asset_path('posts/live_feed.html') %>",
-      controller: 'LiveFeedCtrl'
+    when('/around', {
+      templateUrl: "<%= asset_path('posts/around.html') %>",
+      controller: 'AroundCtrl'
     })
   
   
