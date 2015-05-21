@@ -1,25 +1,26 @@
 class PostsController < ApplicationController
   
 # before_action :authenticate_user!
+
+
   
   def around
     post = Post.find_by_id(params[:id])
     @posts = Post.where("latitude > ?" , post.latitude - 0.001).where("latitude < ?" , post.latitude + 0.001).where("longitude > ?" , post.longitude - 0.001).where("longitude < ?" , post.longitude + 0.001)
   end
 
-  def live_feed(postId)
+  def live_feed(postId, searchRadius)
     post = Post.find_by_id(postId)
-    return Post.order(taken_at: :desc).where("latitude > ?" , post.latitude - 0.001).where("latitude < ?" , post.latitude + 0.001).where("longitude > ?" , post.longitude - 0.001).where("longitude < ?" , post.longitude + 0.001).where("taken_at > ?", post.taken_at - 1.hour)
+    return Post.order(taken_at: :desc).where("latitude > ?" , post.latitude - searchRadius).where("latitude < ?" , post.latitude + searchRadius).where("longitude > ?" , post.longitude - searchRadius).where("longitude < ?" , post.longitude + searchRadius).where("taken_at > ?", post.taken_at - 1.hour).includes(:comments)
   end
 
   def index
-    
+    search_radius = 0.001
     post = Post.order(taken_at: :desc).first
     if post.taken_at > (DateTime.now - 1.hour)
-      @posts = live_feed(post.id)
+      @posts = live_feed(post.id, search_radius)
     else
-      @posts = Post.all
-      #.includes(:comments)
+      @posts = Post.all.includes(:comments)
     end
     
   end
