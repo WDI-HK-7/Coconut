@@ -22,10 +22,18 @@ Rails.application.routes.draw do
   #   resources :products
 
   root 'home#index'
+
+  devise_scope :user do
+    get 'authenticated' => 'users/sessions#authenticated'
+  end
   
   resources :posts do
     resources :comments
   end
+
+  get 'users/:user_id/profile' => 'profiles#show'
+  post 'users/profile' => 'profiles#create'
+  put 'users/profile' => 'profiles#update'
 
   get 'around/:id' => 'posts#around'
 
