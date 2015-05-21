@@ -34,20 +34,20 @@ app.controller('HomeCtrl', ['$scope', '$http', '$location', 'Upload', function($
   
   $scope.form.create = function(index) {
 		
-		var data = {
-			comment: {
-				content: $scope.posts[index].new_comment.content,
-				post_id: $scope.posts[index].id
-			}
-		};
-		
-		$http.post(url + 'posts/' + $scope.posts[index].id + '/comments', data).success(function(response) {
-			console.log(response);
-			
-			$scope.posts[index].comments.push(response.message.comment);
-			$scope.posts[index].new_comment.content = "";
-		});
-	};
+    var data = {
+      comment: {
+        content: $scope.posts[index].new_comment.content,
+        post_id: $scope.posts[index].id
+      }
+    };
+
+    $http.post(url + 'posts/' + $scope.posts[index].id + '/comments', data).success(function(response) {
+      console.log(response);
+
+      $scope.posts[index].comments.push(response.message.comment);
+      $scope.posts[index].new_comment.content = "";
+    });
+  };
   
 //  $http.get(url + 'users/' + ).success(function(response) {
 //    console.log(response);
