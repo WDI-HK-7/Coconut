@@ -1,0 +1,13 @@
+app.controller('LiveFeedCtrl', ['$scope', '$http', function($scope, $http) {
+  
+  postId = 1
+                            
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000/";
+  
+  $http.get(url + 'live_feed/' + postId).success(function(response) {
+    console.log(response);
+    $scope.posts = response;
+  });
+
+  
+}]);
