@@ -1,3 +1,57 @@
-app.controller('HomeCtrl', ['$scope', function($scope){
-  $scope.message = "Angular is Working!";
+app.controller('HomeCtrl', ['$scope', '$http', '$location', 'Upload', function($scope, $http, $location, Upload){
+  
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000/";
+  
+  $scope.post = {};
+  $scope.form = {};
+  $scope.picture = {};
+
+  
+  $http.get(url + 'posts').success(function(response) {
+    console.log(response);
+    $scope.posts = response;
+  });
+  
+  $scope.form.submit = function(){
+    var data = {
+        'post[description]': $scope.post.description
+    };
+
+    Upload.upload({
+      url: url + 'posts',
+      method:'POST',
+      fields: data,
+      file: $scope.picture.files[0],
+      fileFormDataName: 'post[picture]'
+    }).success(function(response){
+      console.log(response);
+      $http.get(url + 'posts').success(function(response) {
+        console.log(response);
+        $scope.posts = response;
+      });
+    });
+  };
+  
+  $scope.form.create = function(index) {
+		
+    var data = {
+      comment: {
+        content: $scope.posts[index].new_comment.content,
+        post_id: $scope.posts[index].id
+      }
+    };
+
+    $http.post(url + 'posts/' + $scope.posts[index].id + '/comments', data).success(function(response) {
+      console.log(response);
+
+      $scope.posts[index].comments.push(response.message.comment);
+      $scope.posts[index].new_comment.content = "";
+    });
+  };
+  
+//  $http.get(url + 'users/' + ).success(function(response) {
+//    console.log(response);
+//    $scope.posts = response;
+//  });
+  
 }]);

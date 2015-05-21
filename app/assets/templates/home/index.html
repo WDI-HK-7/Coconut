@@ -1,5 +1,94 @@
+<!--------------------------------------  Nav Bar                 -------------------------------------->
+ 
+<nav class="navbar navbar-default navbar-static-top" ng-include="'navbar.html'"></nav>
+
+
 <div class="container">
+  
+<!--------------------------------------  Title                   -------------------------------------->
+
+  <h1 id="welcome-message">Welcome to Coconut</h1>
+
   <div class="row">
-    <h1> {{ message }} </h1>
+    
+
+    <div class="panel panel-default col-sm-3" id="input-panel">
+     
+      <div class="panel-body">
+       
+<!--------------------------------------  Profile Panel -------------------------------------->
+         
+          <div>
+            Xiao Yang
+          </div>
+          
+          <div>
+            Followers: 30
+          </div>
+           
+          <div>
+            Following: 50
+          </div>
+          
+<!--------------------------------------  Photo Post Upload Panel -------------------------------------->
+         
+         <form ng-submit="form.submit()">
+          <label>Post a Live Photo</label></br>
+          <button class="btn btn-success" ngf-select ng-model="picture.files">
+            <span aria-hidden="true" class="glyphicon glyphicon-camera"></span> 
+            Upload
+          </button>
+            
+          <div class="form-group">
+            <label>Description</label>
+            <input type="text" class="form-control" placeholder="Say something about it..." ng-model="post.description">
+          </div>
+
+          <button type="submit" class="btn btn-primary">Post</button>
+        </form>
+
+        <img ngf-src="picture.files[0]" ngf-accept="'image/*'" class="col-xs-4">
+        
+      </div>
+      
+    </div>
+    
+<!--------------------------------------  Photo Live/Home Feed -------------------------------------->
+
+    <div class="col-xs-12 col-sm-9 col-sm-offset-3">
+     
+      <ul class="list-group">
+        <li class="list-group-item">
+          <input autocomplete='on' type="search" class="form-control" id="review-search" placeholder="Search live feed...">
+        </li>
+      </ul>
+      
+      <ul class="list-group" id="all-reviews" ng-repeat="post in posts">
+        <li class="list-group-item"><strong>{{ post.description }}</strong></li>
+        <li class="list-group-item"><img class="img-responsive" ng-src="{{ post.picture }}"></li>
+        
+<!--------------------------------------  Post Comments Display --------------------------------------> 
+        
+        <li class="list-group-item" ng-repeat="comment in post.comments">
+					{{ comment.content }}
+				<small>
+          {{ comment.created_at | date }}
+        </small>
+				</li>
+        <li class="list-group-item">
+          <form ng-submit="form.create($index)">
+            <input type="text" class="form-control" placeholder="Comment here..." ng-model="post.new_comment.content">
+          </form>
+        </li>
+      </ul>
+      
+      
+    </div>
+    
+<!--------------------------------------  End of Row -------------------------------------->
+ 
   </div>
+
+<!--------------------------------------  End of Container -------------------------------------->
+
 </div>

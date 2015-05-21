@@ -6,10 +6,6 @@ var app = angular.module('coconut', ['ngRoute', 'ngFileUpload']);
 app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   // Configure Angular Routes
   $routeProvider.
-    when('/test', {
-      templateUrl: "<%= asset_path('home/index.html') %>",
-      controller: 'HomeCtrl'
-    }).
 
   // --------------- User Login/SignUp page -----
 
@@ -44,10 +40,20 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     when('/around', {
       templateUrl: "<%= asset_path('posts/around.html') %>",
       controller: 'AroundCtrl'
-    })
+    }).
   
+  // --------------- Live Feed ----------------
   
-    
+    when('/live_feed', {
+      templateUrl: "<%= asset_path('posts/live_feed.html') %>",
+      controller: 'LiveFeedCtrl'
+    }).
+  
+  // --------------- Home Page ----------------
 
-    // $locationProvider.html5Mode(true);
+    when('/home', {
+      templateUrl: "<%= asset_path('home/index.html') %>",
+      controller: 'HomeCtrl'
+    })
+
 }]);
