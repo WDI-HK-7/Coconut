@@ -4,7 +4,6 @@ app.controller('LoginCtrl', ['$scope', '$http', '$location', function($scope, $h
   $scope.form = {};
 
   $scope.form.login = function(){
-    console.log($scope.user);
     console.log("Logging In to Coconut Account!")
 
     var url = "<%= ENV['URL'] %>" || "http://localhost:3000/";

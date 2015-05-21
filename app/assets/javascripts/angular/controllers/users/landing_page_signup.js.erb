@@ -12,8 +12,6 @@ app.controller('SignupCtrl', ['$scope', '$http', '$location', function($scope, $
       user: $scope.user
     };
 
-    console.log(data);
-
     $http.post(url + 'users', data).success(function(response){
       console.log(response);
 
