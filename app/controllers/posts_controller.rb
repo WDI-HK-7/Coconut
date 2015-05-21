@@ -1,8 +1,5 @@
 class PostsController < ApplicationController
-  
-# before_action :authenticate_user!
-
-
+  before_action :authenticate_user!
   
   def around
     post = Post.find_by_id(params[:id])
@@ -16,8 +13,10 @@ class PostsController < ApplicationController
 
   def index
     search_radius = 0.001
-    post = Post.order(taken_at: :desc).first
-    if post.taken_at > (DateTime.now - 1.hour)
+    post = current_user.posts.order(taken_at: :desc).first
+    if post.nil?
+      @posts = Post.all.includes(:comments)
+    elsif post.taken_at > (DateTime.now - 1.hour)
       @posts = live_feed(post.id, search_radius)
     else
       @posts = Post.all.includes(:comments)
@@ -32,7 +31,7 @@ class PostsController < ApplicationController
     
     converted = convert_coordinates_to_float(exifr)
 
-    @post = Post.new(post_params)
+    @post = current_user.posts.new(post_params)
 
 
     @post.longitude = converted[:longitude]

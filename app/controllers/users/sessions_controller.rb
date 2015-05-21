@@ -22,6 +22,18 @@ class Users::SessionsController < Devise::SessionsController
     render json: {:success => true, :message => "logged out"}
   end
 
+  def authenticated
+    if current_user.nil?
+      return render json: {:signed_in => false}
+    else
+      return render json: 
+        {
+          :signed_in => true,
+          :current_user_id => current_user.id
+      }
+    end
+  end
+
   # GET /resource/sign_in
   # def new
   #   super
