@@ -6,11 +6,19 @@ app.controller('HomeCtrl', ['$scope', '$http', '$location', 'Upload', function($
   $scope.form = {};
   $scope.picture = {};
 
-  
-  $http.get(url + 'posts').success(function(response) {
-    console.log(response);
-    $scope.posts = response;
-  });
+//  $http.get(url + 'authenticated').success(function(response) {
+//    
+//    if (response.success) {
+      $http.get(url + 'posts').success(function(response) {
+        console.log(response);
+        $scope.posts = response;
+      });
+//    }
+//    else {
+//      $location.path('landing_page');
+//    }
+//    
+//  });
   
   $scope.form.submit = function(){
     var data = {
@@ -49,9 +57,4 @@ app.controller('HomeCtrl', ['$scope', '$http', '$location', 'Upload', function($
     });
   };
   
-//  $http.get(url + 'users/' + ).success(function(response) {
-//    console.log(response);
-//    $scope.posts = response;
-//  });
-
 }]);
