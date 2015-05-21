@@ -7,13 +7,13 @@ json.array! @posts do |post|
   json.latitude post.latitude
   json.longitude post.longitude
   
-# json.comments post.comments do |comment|
-# 
-#   json.content comment.content
-#   json.created_at comment.created_at
-#   json.user_id comment.user_id
-# 
-# end
+  json.comments post.comments do |comment|
+  
+    json.content comment.content
+    json.created_at comment.created_at
+    json.user_id comment.user_id
+  
+  end
   
 
 end

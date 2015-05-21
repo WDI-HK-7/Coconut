@@ -9,7 +9,7 @@ class PostsController < ApplicationController
 
   def live_feed(postId)
     post = Post.find_by_id(postId)
-    return Post.order(taken_at: :desc).where("latitude > ?" , post.latitude - 0.001).where("latitude < ?" , post.latitude + 0.001).where("longitude > ?" , post.longitude - 0.001).where("longitude < ?" , post.longitude + 0.001).where("taken_at > ?", post.taken_at - 1.hour)
+    return Post.order(taken_at: :desc).where("latitude > ?" , post.latitude - 0.001).where("latitude < ?" , post.latitude + 0.001).where("longitude > ?" , post.longitude - 0.001).where("longitude < ?" , post.longitude + 0.001).where("taken_at > ?", post.taken_at - 1.hour).includes(:comments)
   end
 
   def index
@@ -18,7 +18,7 @@ class PostsController < ApplicationController
     if post.taken_at > (DateTime.now - 1.hour)
       @posts = live_feed(post.id)
     else
-      @posts = Post.all
+      @posts = Post.all.includes(:comments)
       #.includes(:comments)
     end
     
