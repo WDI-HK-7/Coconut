@@ -12,10 +12,13 @@
 }
 
 #input-panel {
-//    padding: 9px 0;
-    position:fixed;
-    z-index: 2000;
-    left:20px;
-//    top:60px;
-//    width:250px;
+  position:fixed;
+  z-index: 2000;
+  left:20px;
+}
+
+#profile-panel {
+  position:fixed;
+  z-index: 2000;
+  right:20px;
 }
