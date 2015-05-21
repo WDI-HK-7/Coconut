@@ -1,8 +1,5 @@
 class PostsController < ApplicationController
-  
-# before_action :authenticate_user!
-
-
+  before_action :authenticate_user!
   
   def around
     post = Post.find_by_id(params[:id])
@@ -16,7 +13,7 @@ class PostsController < ApplicationController
 
   def index
     search_radius = 0.001
-    post = Post.order(taken_at: :desc).first
+    post = current_user.posts.order(taken_at: :desc).first
     if post.taken_at > (DateTime.now - 1.hour)
       @posts = live_feed(post.id, search_radius)
     else

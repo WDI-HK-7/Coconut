@@ -1,4 +1,6 @@
 class ProfilesController < ApplicationController
+  before_action :authenticate_user!
+  
   def create
     @profile = current_user.profiles.new(profile_params)
 
