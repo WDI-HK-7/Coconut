@@ -36,6 +36,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$location', 'Upload', function($
       $http.get(url + 'posts').success(function(response) {
         console.log(response);
         $scope.posts = response;
+        $scope.post.description = "";
       });
     });
   };
