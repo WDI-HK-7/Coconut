@@ -40,7 +40,7 @@ class PostsController < ApplicationController
     @post.taken_at = exifr.date_time
     
     if @post.save
-      render :json => { message: "saved", post: @post}
+      render :json => { message: "saved", post: @post, photo: exifr }
     else
       render :json => { message: "not saved" }
     end
