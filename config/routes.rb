@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   
   resources :posts
 
-  get 'live_feed/:id' => 'posts#around'
+  get 'around/:id' => 'posts#around'
 
   # Example resource route with options:
   #   resources :products do
