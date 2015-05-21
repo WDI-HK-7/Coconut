@@ -28,6 +28,8 @@ gem 'devise'
 gem 'paperclip'
 # Use exifr to read metadata in user uploaded images
 gem 'exifr'
+# rmagick to auto orient picture before writing to database
+gem 'rmagick'
 
 
 # Use jquery as the JavaScript library
