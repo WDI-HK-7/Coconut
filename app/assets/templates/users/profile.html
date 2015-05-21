@@ -1,25 +1,30 @@
 <div class="container">
+
   <div class="row">
     <p>This Is Where The Profile Information Needs To Be</p>
-    <div>
-    	Profile: {{ profile description here}}
-      Followers: {{}} 
-      Following: {{}}
+    <div class="profile-description">
+      Profile: Profile description here 
+      Followers: #Followers 
+      Following: #Following
     </div>
   </div>
+
   <div class="row">
-    <p>This Is Where The  User Posts Needs To Be</p>
-    <div ng-repeat="post in posts">
-    	2 Columns of posts
-      <div>
-        {{ user.post.description }}
-        <div class="col-xs-12">
-          <img ng-src="{{ user.post.picture }}" class="img-responsive">
+    <div col-xs-6 col-xs-offset-3>
+      <p>This Is Where The  User Posts Needs To Be</p>
+      <div id="profile-posts" ng-repeat="post in posts">
+        2 Columns of posts
+        <div>
+          User's Post Description Here:
+          <div class="col-xs-12">
+            User's Post.Picture Here 
+          </div>
+          <small>
+          User's Picture Taken_At Time Here.
+          </small>
         </div>
-        <small>
-          {{ user.post.taken_at | date }}
-        </small>
       </div>
     </div>
   </div>
+
 </div>
