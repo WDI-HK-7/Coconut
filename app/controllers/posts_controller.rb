@@ -19,11 +19,13 @@ class PostsController < ApplicationController
 
     search_radius = 0.001
     post = current_user.posts.order(taken_at: :desc).first
-    timezone = Timezone::Zone.new :zone => post.timezone
     # return render :json => { post: timezone.time(Time.now) }
     if post.nil?
-      @posts = Post.all.includes(:comments)
-    elsif post.taken_at > (timezone.time(Time.now) - 1.hour)
+      return @posts = Post.all.includes(:comments)
+    end
+    
+    timezone = Timezone::Zone.new :zone => post.timezone
+    if post.taken_at > (timezone.time(Time.now) - 1.hour)
       @posts = live_feed(post.id, search_radius)
     else
       @posts = Post.all.includes(:comments)
