@@ -1,13 +1,3 @@
-app.controller('UserProfileCtrl', ['$scope', '$http', '$location', function($scope, $http, $location){
-  
-  var url = "<%= ENV['URL'] %>" || "http://localhost:3000/";
-
-  $http.get(url + 'users/' + current_user.id + '/posts', data).success(function(response){
-    console.log(response);
-
-    $scope.post = response;
-
-    $location.path('/'); //Need to take them to signin after signing up.
-  });
+app.controller('UserProfileCtrl', [function(){
 
 }]);
