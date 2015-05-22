@@ -28,4 +28,4 @@ function hideSignUp(target){
         $('.front-page-pic').fadeIn(1000);
       });
     });
-  }, 3000);
+  }, 10000);

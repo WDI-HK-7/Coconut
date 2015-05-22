@@ -4,10 +4,11 @@ app.controller('GetProfileInfoCtrl', ['$scope', '$http', '$location',  function(
 
   $http.get(url + "authenticated").success(function(response){
 
-    var authentication = response; 
-
-    if (authentication.signed_in) {
-      $http.get(url + 'users/'+ authentication.current_user_id +'/profile').success(function(response) {
+    $scope.authentication = response; 
+  
+    
+    if ($scope.authentication.signed_in) {
+      $http.get(url + 'users/'+ $scope.authentication.current_user_id +'/profile').success(function(response) {
       console.log(response);
       $scope.profile = response;
       });
