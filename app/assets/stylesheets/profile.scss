@@ -1,50 +1,47 @@
 #profile-posts {
-	font-size: 18px;
-	width: auto;
-	height: auto;
+  font-size: 18px;
+  width: auto;
+  height: auto;
 }
 
 .profile-description {
-	background-color: navy;
-	color: white;	
-	text-align: center;
+  background-color: navy;
+  color: white; 
+  text-align: center;
+  height: 250px
 }
 
-.avatar-container {
-	height: 152px;
-	width: 120px;
+#profile-avatar {
+  height: 150px;
 }
 
-#profile-pic {
-	height: 110px;
-	width: 110px;
-	margin-top: 50px;
-	margin-left: 15px;
-}
 
 .user-profile-info {
-	position: relative;
-	top: 30%;
-	// transform: translateY(-50%);
-	width: 550px;
-	margin-left: 150px;
-	margin-top: -50px;
-	padding-bottom: 10px;
+  width: 550px;
+  margin: 0 auto;
+  margin-top: 50px;
 }
 
 .posts-here {
-	text-align: center;
+  text-align: center;
 }
 
 .profile-container-fluid {
-	background-color: green;
+  background-image: url('http://www.widewallpapers.ru/mod/backgrounds/1920x1200/background-wide-wallpaper-1920x1200-004.jpg');
+  background-repeat: repeat-y;
+  background-size: cover;
 }
 
 .container {
-	margin-top: 50px;
+  margin-top: 50px;
 }
 
-.navbar-default {
-	color: white;
+.profile-name-content {
+  text-align: left;
 }
 
+#black-bar {
+  margin-left: 0;
+  height: 50px;
+  // background-color: black;
+}

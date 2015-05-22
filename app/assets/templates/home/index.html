@@ -90,11 +90,11 @@
 <!--------------------------------------  Post Comments Display --------------------------------------> 
         
         <li class="list-group-item" ng-repeat="comment in post.comments">
-					{{ comment.content }}
-				<small>
+          {{ comment.content }}
+        <small>
           {{ comment.created_at | date:'medium' }}
         </small>
-				</li>
+        </li>
         <li class="list-group-item">
           <form ng-submit="form.create($index)">
             <input type="text" class="form-control" placeholder="Comment here..." ng-model="post.new_comment.content">
