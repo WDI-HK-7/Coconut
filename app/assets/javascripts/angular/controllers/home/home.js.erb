@@ -36,8 +36,8 @@ app.controller('HomeCtrl', ['$scope', '$http', '$location', 'Upload', function($
     
     var data = {
         'post[description]': $scope.post.description,
-        'post[lon]': browserGPS.lon,
-        'post[lat]': browserGPS.lat
+        'coordinates[lon]': browserGPS.lon,
+        'coordinates[lat]': browserGPS.lat
     };
 
     Upload.upload({
