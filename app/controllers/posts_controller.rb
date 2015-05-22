@@ -11,6 +11,10 @@ class PostsController < ApplicationController
     return Post.order(taken_at: :desc).where("latitude > ?" , post.latitude - searchRadius).where("latitude < ?" , post.latitude + searchRadius).where("longitude > ?" , post.longitude - searchRadius).where("longitude < ?" , post.longitude + searchRadius).where("taken_at > ?", post.taken_at - 1.hour).includes(:comments)
   end
 
+  def userPosts
+    @posts = User.find_by_id(params[:user_id]).posts.all.includes(:comments)
+  end
+
   def index
     search_radius = 0.001
     post = current_user.posts.order(taken_at: :desc).first

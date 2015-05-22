@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   get 'users/:user_id/profile' => 'profiles#show'
   post 'users/profile' => 'profiles#create'
   put 'users/profile' => 'profiles#update'
-
+  get 'users/:user_id/posts' => 'posts#userPosts'
   get 'around/:id' => 'posts#around'
 
   # Example resource route with options:
