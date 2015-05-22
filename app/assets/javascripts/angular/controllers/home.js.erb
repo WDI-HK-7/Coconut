@@ -6,13 +6,33 @@ app.controller('HomeCtrl', ['$scope', '$http', '$location', 'Upload', function($
   $scope.form = {};
   $scope.picture = {};
 
-  
-  $http.get(url + 'posts').success(function(response) {
+  $http.get(url + 'authenticated').success(function(response) {
+    
     console.log(response);
-    $scope.posts = response;
+    
+    $scope.current_user_id = response.current_user_id
+    
+    if (response.signed_in) {
+      $http.get(url + 'posts').success(function(response) {
+        console.log(response);
+        $scope.posts = response;
+        
+        $http.get(url + 'users/' + $scope.current_user_id + '/profile').success(function(response) {
+          console.log(response);
+          $scope.profile = response;
+        });
+        
+      });
+      
+    }
+    else {
+      $location.path('/');
+    }
+    
   });
   
   $scope.form.submit = function(){
+    
     var data = {
         'post[description]': $scope.post.description
     };
@@ -28,8 +48,10 @@ app.controller('HomeCtrl', ['$scope', '$http', '$location', 'Upload', function($
       $http.get(url + 'posts').success(function(response) {
         console.log(response);
         $scope.posts = response;
+        $scope.post.description = "";
       });
     });
+    
   };
   
   $scope.form.create = function(index) {
@@ -47,11 +69,14 @@ app.controller('HomeCtrl', ['$scope', '$http', '$location', 'Upload', function($
       $scope.posts[index].comments.push(response.message.comment);
       $scope.posts[index].new_comment.content = "";
     });
+    
   };
   
-//  $http.get(url + 'users/' + ).success(function(response) {
-//    console.log(response);
-//    $scope.posts = response;
-//  });
-
+  $scope.logout = function(){
+    $http.delete(url + 'users/sign_out').success(function(response) {
+      console.log(response);
+      $location.path('/');
+    });
+  };
+  
 }]);
