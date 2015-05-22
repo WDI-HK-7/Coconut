@@ -95,7 +95,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$location', 'Upload', function($
   $scope.logout = function(){
     $http.delete(url + 'users/sign_out').success(function(response) {
       console.log(response);
-      $location.path('/');
+      $location.path('');
     });
   };
   
