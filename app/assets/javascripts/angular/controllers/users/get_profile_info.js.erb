@@ -1,0 +1,29 @@
+app.controller('GetProfileInfoCtrl', ['$scope', '$http', '$location',  function($scope, $http, $location){
+	
+	var url = "<%= ENV['URL'] %>" || "http://localhost:3000/";
+
+	$http.get(url + "authenticated").success(function(response){
+
+    var authentication = response; 
+
+    if (authentication.signed_in) {
+      
+		 $http.get(url + 'users/'+ authentication.current_user_id +'/profile').success(function(response) {
+	    console.log(response);
+	    $scope.profile = response;
+	  });
+
+      // $location.path('/')
+    }
+    else {
+      $location.path('/')
+    }
+
+  });
+
+
+
+
+
+
+}]);

@@ -7,13 +7,18 @@
   color: black;
 }
 
-#front-page-pic {
+.front-page-pic {
+  background-image: url('https://www.organicfacts.net/wp-content/uploads/2013/05/Coconut2.jpg?da727c');
+  height: 150px;
+  width: 150px;
+  background-size: cover;
+  background-repeat: no-repeat;
   margin-top: 50px;
 }
 
 .front-signin {
   height: 170px;
-  width: 300px;
+  width: 400px;
   margin: 0 auto;
   margin-bottom: 25px;
   padding-bottom: 25px;
@@ -21,7 +26,7 @@
 
 .front-signup {
   height: 450px;
-  width: 300px;
+  width: 400px;
   margin: 0 auto;
   margin-bottom: 25px;
 }
@@ -34,4 +39,9 @@
 
 #front-page-description {
   font-size: 18px;
+}
+
+#signin-signup {
+  margin-bottom: 15px;
+  text-align: center;
 }

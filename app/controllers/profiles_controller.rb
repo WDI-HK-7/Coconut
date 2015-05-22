@@ -32,6 +32,7 @@ class ProfilesController < ApplicationController
   def show
     @profile = User.find_by_id(params[:user_id]).profile
 
+
     if @profile.nil?
       render :json => {
         message: "Can't find user profile"

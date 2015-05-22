@@ -37,24 +37,28 @@
 
 <div class="container-fluid profile-container-fluid"> 
   <div class="container">
-    <span id="black-bar"></span>
-    <div class="row">
-      <div class="profile-description">
-        <div class="avatar-container">
-          <span class="user-avatar">
-            <img id="profile-pic"src="https://igcdn-photos-b-a.akamaihd.net/hphotos-ak-xfa1/t51.2885-19/10852912_773624716036233_1378346321_a.jpg">
-          </span>
+    <div id="black-bar"></div>
+    <div class="row profile-description">
+      <!-- <div class="col-xs-12"> -->
+        <div class="user-profile-info" ng-controller="GetProfileInfoCtrl">
+
+        <div class="avatar-container col-xs-4">
+          <img ng-src="{{ profile.avatar }}" class="img-responsive" id="profile-avatar">
         </div>
-        <div class="user-profile-info">
-          <strong>User Name</strong> Hello my name is Coconut! I love taking photos and sharing them with my friends, I would also love to get to know others who take photos around me.<br> Followers: 8888 Following: 8888
-
-          {{ profile.username }}
-          {{ proile.content }}
-          <img ng-src="{{ profile.avatar }}" class="img-responsive">
-
+        <div class="profile-name-content col-xs-8">
+         Username: 
+         {{ profile.username }}
+          <br>
+          <br>
+         Description: <br>
+         {{ profile.content }}
+          <br>
+          <br>
+          Followers: 8888 Following: 8888
+        </div>
 
         </div>
-      </div>
+      <!-- </div> -->
     </div>
 
 
@@ -80,7 +84,7 @@
           </small>
           </li>
           <li class="list-group-item">
-            <form ng-submit="form.comment($index)">
+            <form ng-submit="form.create($index)">
               <input type="text" class="form-control" placeholder="Comment here..." ng-model="post.new_comment.content">
             </form>
           </li>

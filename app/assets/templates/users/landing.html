@@ -10,14 +10,15 @@
           <p>Coconut is an application that allows you to easily find out who else is around you taking pictures and uploading them live!<br> Share your discoveries with others around you and discover new things in what others around have found... the world has just become even smaller</p>
         </div>
         <div class="col-xs-4 pull-left front-page-pic"> 
-          <img id="front-page-pic" src="http://coconutoil.com/wp-content/uploads/sites/6/2013/04/coconuts-1024x682.jpg" class="img-responsive">
         </div>
       </div>
     </div>
-
-    <div>
-      <button onclick="showSignUp('signup')">Sign Up!</button>
-      <button onclick="hideSignUp('signup')">Sign In!</button>
+    
+    <div class="row">  
+      <div id="signin-signup" class="">
+        <button onclick="showSignUp('signup')" class="btn btn-default">Sign Up!</button>
+        <button onclick="hideSignUp('signup')" class="btn btn-default">Sign In!</button>
+      </div>
     </div>
 
     <div class="row">
@@ -48,11 +49,11 @@
               <input type="email" class="form-control" placeholder="Enter email" ng-model="user.email">
             </div>
             <div class="form-group">
-              <label>Password</label>
+              <label>Password (minimum of 8 characters)</label>
               <input type="password" class="form-control" placeholder="Password" ng-model="user.password">
             </div>
             <div class="form-group">
-              <label>Password</label>
+              <label>Password Confirmation</label>
               <input type="password" class="form-control" placeholder="Password Confirmation" ng-model="user.passwordConfirmation">
             </div>
             <button type="submit" class="btn btn-primary">Sign Up</button>
