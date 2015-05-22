@@ -10,7 +10,7 @@ app.controller('UserProfileCtrl', ['$scope', '$http', function($scope, $http) {
   });
 
   $scope.form.create = function(index) {
-		
+    
     var data = {
       comment: {
         content: $scope.posts[index].new_comment.content,
