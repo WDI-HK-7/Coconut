@@ -34,36 +34,31 @@
   
 </nav> 
 
-
 <div class="container-fluid profile-container-fluid"> 
   <div class="container">
     <div id="black-bar"></div>
     <div class="row profile-description">
-      <!-- <div class="col-xs-12"> -->
         <div class="user-profile-info" ng-controller="GetProfileInfoCtrl">
 
-        <div class="avatar-container col-xs-4">
-          <img ng-src="{{ profile.avatar }}" class="img-responsive" id="profile-avatar">
-        </div>
-        <div class="profile-name-content col-xs-8">
-         Username: 
-         {{ profile.username }}
-          <br>
-          <br>
-         Description: <br>
-         {{ profile.content }}
-          <br>
-          <br>
-          Followers: 8888 Following: 8888
-        </div>
+          <div class="avatar-container col-xs-4">
+            <img ng-src="{{ profile.avatar }}" class="img-responsive" id="profile-avatar">
+          </div>
+          <div class="profile-name-content col-xs-8">
+            Username: 
+            {{ profile.username }}
+            <br>
+            <br>
+            Description: <br>
+            {{ profile.content }}
+            <br>
+            <br>
+            Followers: 8888 Following: 8888
+          </div>
 
         </div>
-      <!-- </div> -->
     </div>
 
-
     <div class="row">
-
         <p class="posts-here"><span> ________________________________________________________________________</span><BR>This Is Where The  User Posts Needs To Be.
         <br>
         <br>
@@ -75,7 +70,6 @@
           
           <li class="list-group-item"><strong>{{ post.description }}</strong></li>
           <li class="list-group-item"><img class="img-responsive" ng-src="{{ post.picture }}"></li>
-          
           
           <li class="list-group-item" ng-repeat="comment in post.comments">
             {{ comment.content }}
@@ -90,7 +84,5 @@
           </li>
         </div>
       </ul>
-
-
   </div>
 </div>
