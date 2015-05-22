@@ -37,6 +37,11 @@ class PostsController < ApplicationController
 
     file = params[:post][:picture].tempfile
     exifr = EXIFR::JPEG.new(file)
+    if exifr.gps_longitude.nil?
+      puts "------------- exifr is empty"
+    else
+      puts "------------- exifr is not empty"
+    end
     puts "exifr -------------------- datetime: #{exifr.date_time} lon: #{exifr.gps_longitude} lat: #{exifr.gps_latitude}"
     
     converted = convert_coordinates_to_float(exifr)
@@ -122,7 +127,7 @@ class PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:description, :picture)
+    params.require(:post).permit(:description, :picture, :lon, :lat)
   end
 
   def convert_to_decimal(coordinates)
