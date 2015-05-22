@@ -1,30 +1,92 @@
-<div class="container">
-
-  <div class="row">
-    <p>This Is Where The Profile Information Needs To Be</p>
-    <div class="profile-description">
-      Profile: Profile description here 
-      Followers: #Followers 
-      Following: #Following
+<!--------------------------------------  Nav Bar                 -------------------------------------->
+<nav class="navbar navbar-default navbar-fixed-top navbar-profile">
+   
+    <div class="container-fluid">
+   
+    <div class="navbar-header">
+     
+<!--------------------------------------  Hamburger               -------------------------------------->
+     
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
     </div>
-  </div>
 
-  <div class="row">
-    <div col-xs-6 col-xs-offset-3>
-      <p>This Is Where The  User Posts Needs To Be</p>
-      <div id="profile-posts" ng-repeat="post in posts">
-        2 Columns of posts
-        <div>
-          User's Post Description Here:
-          <div class="col-xs-12">
-            User's Post.Picture Here 
-          </div>
-          <small>
-          User's Picture Taken_At Time Here.
-          </small>
+<!----------------------  Elements available in collapsed Nav Bar -------------------------------------->
+   
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+     
+      <span id="welcome-message">Welcome to Coconut</span>
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#" id="signout">User Name Here</a></li>
+      </ul>
+      
+    </div>
+
+  </div>
+  
+</nav> 
+
+
+<div class="container-fluid profile-container-fluid"> 
+  <div class="container">
+    <span id="black-bar"></span>
+    <div class="row">
+      <div class="profile-description">
+        <div class="avatar-container">
+          <span class="user-avatar">
+            <img id="profile-pic"src="https://igcdn-photos-b-a.akamaihd.net/hphotos-ak-xfa1/t51.2885-19/10852912_773624716036233_1378346321_a.jpg">
+          </span>
+        </div>
+        <div class="user-profile-info">
+          <strong>User Name</strong> Hello my name is Coconut! I love taking photos and sharing them with my friends, I would also love to get to know others who take photos around me.<br> Followers: 8888 Following: 8888
+
+          {{ profile.username }}
+          {{ proile.content }}
+          <img ng-src="{{ profile.avatar }}" class="img-responsive">
+
+
         </div>
       </div>
     </div>
-  </div>
 
+
+    <div class="row">
+
+        <p class="posts-here"><span> ________________________________________________________________________</span><BR>This Is Where The  User Posts Needs To Be.
+        <br>
+        <br>
+        <br>
+        <br></p>
+
+      <ul class="list-group" id="profile-posts" ng-repeat="post in posts">
+        <div class="col-xs-12 col-sm-6">
+          
+          <li class="list-group-item"><strong>{{ post.description }}</strong></li>
+          <li class="list-group-item"><img class="img-responsive" ng-src="{{ post.picture }}"></li>
+          
+          
+          <li class="list-group-item" ng-repeat="comment in post.comments">
+            {{ comment.content }}
+          <small>
+            {{ comment.created_at | date }}
+          </small>
+          </li>
+          <li class="list-group-item">
+            <form ng-submit="form.comment($index)">
+              <input type="text" class="form-control" placeholder="Comment here..." ng-model="post.new_comment.content">
+            </form>
+          </li>
+        </div>
+      </ul>
+
+
+  </div>
 </div>

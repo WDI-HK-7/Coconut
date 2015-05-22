@@ -2,7 +2,7 @@ class ProfilesController < ApplicationController
   before_action :authenticate_user!
   
   def create
-    @profile = current_user.profiles.new(profile_params)
+    @profile = current_user.build_profile(profile_params)
 
     unless @profile.valid?
       return render :json => { message: @profile.errors.messages }
@@ -16,7 +16,7 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    @profile = current_user.profiles.first
+    @profile = current_user.profile
 
     if @profile.nil?
       create()

@@ -15,3 +15,12 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.navbar-default {
+  background-color: #965A3E;
+  color: white;
+}
+
+#navbar-collapse > ul > li > a {
+  color: white;
+}
