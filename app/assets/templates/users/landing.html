@@ -5,14 +5,19 @@
     <div class="row description">
       <div class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1">
         
-        <div id="front-page-description" class="col-xs-8 pull-right">
+        <div id="front-page-description" class=" hidden-xs col-sm-8 pull-right">
           <h1>Welcome to Coconut</h1>
           <p>Coconut is an application that allows you to easily find out who else is around you taking pictures and uploading them live!<br> Share your discoveries with others around you and discover new things in what others around have found... the world has just become even smaller</p>
         </div>
+        <div class="hidden-xs col-sm-4 pull-left front-page-pic"> 
++       </div>
       </div>
     </div>
     
     <div class="row">  
+      <div id="mobile-welcome" class="visible-xs">
+        <h1>Welcome to Coconut</h1>
+      </div>
       <div id="signin-signup" class="">
         <button onclick="showSignUp('signup')" class="btn btn-default">Sign Up!</button>
         <button onclick="hideSignUp('signup')" class="btn btn-default">Sign In!</button>
