@@ -1,7 +1,7 @@
 app.controller('HomeCtrl', ['$scope', '$http', '$location', 'Upload', function($scope, $http, $location, Upload){
   
   var url = "<%= ENV['URL'] %>" || "http://localhost:3000/";
-  
+  var browserGPS = {};
   $scope.post = {};
   $scope.form = {};
   $scope.picture = {};
@@ -35,7 +35,9 @@ app.controller('HomeCtrl', ['$scope', '$http', '$location', 'Upload', function($
   $scope.form.submit = function(){
     
     var data = {
-        'post[description]': $scope.post.description
+        'post[description]': $scope.post.description,
+        'coordinates[lon]': browserGPS.lon,
+        'coordinates[lat]': browserGPS.lat
     };
 
     Upload.upload({
@@ -55,8 +57,25 @@ app.controller('HomeCtrl', ['$scope', '$http', '$location', 'Upload', function($
     
   };
   
+  function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(storeLocation);
+    } else {
+        conosle.log("Geolocation is not supported by this browser.");
+    }
+  };
+  function storeLocation(position) {
+    browserGPS.lat = position.coords.latitude;
+    browserGPS.lon = position.coords.longitude;
+    console.log(browserGPS.lat +" "+ browserGPS.lon);
+  };
+
+  $(document).on('click', '#upload', function() {
+    getLocation();
+  });
+
   $scope.form.create = function(index) {
-		
+
     var data = {
       comment: {
         content: $scope.posts[index].new_comment.content,

@@ -11,12 +11,21 @@ class PostsController < ApplicationController
     return Post.order(taken_at: :desc).where("latitude > ?" , post.latitude - searchRadius).where("latitude < ?" , post.latitude + searchRadius).where("longitude > ?" , post.longitude - searchRadius).where("longitude < ?" , post.longitude + searchRadius).where("taken_at > ?", post.taken_at - 1.hour).includes(:comments)
   end
 
+  def userPosts
+    @posts = User.find_by_id(params[:user_id]).posts.all.includes(:comments)
+  end
+
   def index
+
     search_radius = 0.001
     post = current_user.posts.order(taken_at: :desc).first
+    # return render :json => { post: timezone.time(Time.now) }
     if post.nil?
-      @posts = Post.all.includes(:comments)
-    elsif post.taken_at > (DateTime.now - 1.hour)
+      return @posts = Post.all.includes(:comments)
+    end
+    
+    timezone = Timezone::Zone.new :zone => post.timezone
+    if post.taken_at > (timezone.time(Time.now) - 1.hour)
       @posts = live_feed(post.id, search_radius)
     else
       @posts = Post.all.includes(:comments)
@@ -25,22 +34,38 @@ class PostsController < ApplicationController
   end
   
   def create
-
+    
+    converted = {}
     file = params[:post][:picture].tempfile
     exifr = EXIFR::JPEG.new(file)
+    if exifr.gps_longitude.nil?
+      puts "------------- exifr is empty"
+      converted[:longitude] = params[:coordinates][:lon].to_f.round(6)
+      converted[:latitude] = params[:coordinates][:lat].to_f.round(6)
+    else
+      converted = convert_coordinates_to_float(exifr)
+      puts "------------- exifr is not empty"
+    end
+    puts "exifr -------------------- datetime: #{exifr.date_time} lon: #{exifr.gps_longitude} lat: #{exifr.gps_latitude}"
     
-    converted = convert_coordinates_to_float(exifr)
+    
 
     @post = current_user.posts.new(post_params)
 
-
+    timezone = Timezone::Zone.new :latlon => [converted[:latitude], converted[:longitude]]
+    @post.timezone = timezone.zone
     @post.longitude = converted[:longitude]
     @post.latitude = converted[:latitude]
-    @post.taken_at = exifr.date_time
+    @post.taken_at = exifr.date_time || timezone.time(Time.now)
+    puts "---------------#{@post.taken_at}"
+    puts "post file ----------------- #{@post.inspect}"
     
-    if @post.save
+    if @post.save!
+      puts "-------------------------------------saved----------------------------"
       render :json => { message: "saved", post: @post, photo: exifr }
     else
+      puts "---------------------------------not saved----------------------------"
+      puts @post.errors.full_messages
       render :json => { message: "not saved" }
     end
     

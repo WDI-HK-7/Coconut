@@ -2,7 +2,7 @@ json.array! @posts do |post|
 
   json.id post.id
   json.description post.description
-  json.picture post.picture.url(:large)
+  json.picture post.picture
   json.taken_at post.taken_at
   json.latitude post.latitude
   json.longitude post.longitude
@@ -14,6 +14,5 @@ json.array! @posts do |post|
     json.user_id comment.user_id
   
   end
-  
 
 end

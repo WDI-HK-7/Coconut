@@ -3,4 +3,4 @@ json.content @profile.content
 json.first_name @profile.first_name
 json.last_name @profile.last_name
 json.username @profile.username
-json.avatar @profile.avatar
+json.avatar @profile.avatar.url(:medium)

@@ -28,6 +28,8 @@ gem 'devise'
 gem 'paperclip'
 # Use exifr to read metadata in user uploaded images
 gem 'exifr'
+# Use timezone to get local time of picture taken for live feed
+gem 'timezone'
 
 
 # Use jquery as the JavaScript library
