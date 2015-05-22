@@ -1,59 +1,67 @@
 
-<div class="container front-page-container">
-  <div class="row description">
-    <div class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1">
-      
-      <div id="front-page-description" class="col-xs-8 pull-right">
-        <h1>Welcome to Coconut</h1>
-        <p>Coconut is an application that allows you to easily find out who else is around you taking pictures and uploading them live!<br> Share your discoveries with others around you and discover new things in what others around have found... the world has just become even smaller</p>
-      </div>
-      <div class="col-xs-4 pull-left front-page-pic"> 
-        <img id="front-page-pic" src="http://coconutoil.com/wp-content/uploads/sites/6/2013/04/coconuts-1024x682.jpg" class="img-responsive">
-      </div>
-    </div>
-  </div> 
-
-  <div class="row">
-    <div class="front-signin">
-      <div class="login col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1">
-        
-        <h1>Login</h1>
-
-        <form ng-submit="form.login()" ng-controller="LoginCtrl">
-          <input type="email"     placeholder="email"                 ng-model="user.email">
-          <input type="password"  placeholder="password"              ng-model="user.password">
-
-          <button type="submit" class="btn btn-primary">Log In to Coconut</button>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="front-signup">
-      <div class="signUp col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1">
-        <h1>Sign Up for Coconut</h1>
-        <p>Please fill in the information below and press the "Sign Up" button upon completion.</p>
-
-        <form ng-submit="form.signup()" ng-controller="SignupCtrl" >
-          <div class="form-group">
-            <label>Email address</label>
-            <input type="email" class="form-control" placeholder="Enter email" ng-model="user.email">
-          </div>
-          <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" placeholder="Password" ng-model="user.password">
-          </div>
-          <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" placeholder="Password Confirmation" ng-model="user.passwordConfirmation">
-          </div>
-          <button type="submit" class="btn btn-primary">Sign Up</button>
-        </form>     
-      </div>
-    </div>
-  </div>
+<div class="container-fluid">
     
+  <div class="container front-page-container">
+    <div class="row description">
+      <div class="col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1">
+        
+        <div id="front-page-description" class="col-xs-8 pull-right">
+          <h1>Welcome to Coconut</h1>
+          <p>Coconut is an application that allows you to easily find out who else is around you taking pictures and uploading them live!<br> Share your discoveries with others around you and discover new things in what others around have found... the world has just become even smaller</p>
+        </div>
+        <div class="col-xs-4 pull-left front-page-pic"> 
+          <img id="front-page-pic" src="http://coconutoil.com/wp-content/uploads/sites/6/2013/04/coconuts-1024x682.jpg" class="img-responsive">
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <button onclick="showSignUp('signup')">Sign Up!</button>
+      <button onclick="hideSignUp('signup')">Sign In!</button>
+    </div>
+
+    <div class="row">
+      <div id="signin" class="front-signin">
+        <div class="login col-xs-12 col-sm-10 col-sm-offset-1">
+          
+          <h1>Login</h1>
+
+          <form ng-submit="form.login()" ng-controller="LoginCtrl">
+            <input type="email"     placeholder="email"                 ng-model="user.email">
+            <input type="password"  placeholder="password"              ng-model="user.password">
+
+            <button type="submit" class="btn btn-primary">Log In to Coconut</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div id="signup" class="front-signup" style='display:none'>
+        <div class="signUp col-xs-6 col-xs-offset-3 col-sm-10 col-sm-offset-1">
+          <h1>Sign Up for Coconut</h1>
+          <p>Please fill in the information below and press the "Sign Up" button upon completion.</p>
+
+          <form ng-submit="form.signup()" ng-controller="SignupCtrl" >
+            <div class="form-group">
+              <label>Email address</label>
+              <input type="email" class="form-control" placeholder="Enter email" ng-model="user.email">
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" class="form-control" placeholder="Password" ng-model="user.password">
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" class="form-control" placeholder="Password Confirmation" ng-model="user.passwordConfirmation">
+            </div>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+          </form>     
+        </div>
+      </div>
+    </div>
+      
+
+  </div>
 
 </div>
-

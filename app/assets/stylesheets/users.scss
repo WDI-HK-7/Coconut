@@ -1,3 +1,7 @@
+.hidden {
+  display: none;
+}
+
 .front-page-container {
   background-color: green;
   color: black;
@@ -10,16 +14,20 @@
 .front-signin {
   height: 170px;
   width: 300px;
-  background-color: blue;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  padding-bottom: 25px;
 }
 
 .front-signup {
-  height: 380px;
-  background-color: red;
+  height: 450px;
+  width: 300px;
+  margin: 0 auto;
+  margin-bottom: 25px;
 }
 
 .front-signup, .front-signin {
-  // border: 1px solid black;
+  border: 1px solid black;
   background-color: white;
   border-radius: 4px;
 }
