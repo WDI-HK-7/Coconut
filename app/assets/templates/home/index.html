@@ -20,18 +20,11 @@
    
     <div class="collapse navbar-collapse" id="navbar-collapse">
      
-      <span id="welcome-message">Welcome to Coconut</span>
+      <a id="welcome-message" ng-href="/#/home">Welcome to Coconut</a>
       
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#" ng-click="logout()">Log Out</a></li>
-        <li class="dropdown open">
-          <a id="navbarDrop1" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dom Dunnett <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="navbarDrop1">
-            <li class="">Profile</li>
-            <li class="divider"></li>
-            <li>Log Out</li>
-          </ul>
-        </li>
+        <li><a ng-href="#/users/{{current_user_id}}/profile/edit">{{ profile.first_name + " " + profile.last_name }}</a></li>
+        <li><a ng-click="logout()">Log Out</a></li>
       </ul>
       
 <!----------------------  Elements in Dropdown Menu               -------------------------------------->
@@ -57,29 +50,30 @@
        
 <!--------------------------------------  Profile Panel -------------------------------------->
          
-          <div class="panel-body">
-<!--            <img id="profile" src="http://www.h3dwallpapers.com/wp-content/uploads/2014/09/Avatar-7.jpg">-->
-          </div>
+          <ul id="profile-info">
+            <li class="list-group-item"><img class="img-responsive img-rounded" ng-src="{{ profile.avatar }}"></li>
+            <li class="list-group-item text-center">{{ profile.first_name + " " + profile.last_name + " | " + profile.username }}</li>
+            <li class="list-group-item">{{ profile.content }}</li>
+          </ul>
           
           
 <!--------------------------------------  Photo Post Upload Panel -------------------------------------->
          
          <form ng-submit="form.submit()">
-          <label>Post a Live Photo</label></br>
-          <button class="btn btn-success" ngf-select ng-model="picture.files">
+          <span>Post a Live Photo</span>
+          <button id="upload-photo-button" class="btn btn-success" ngf-select ng-model="picture.files">
             <span aria-hidden="true" class="glyphicon glyphicon-camera"></span> 
             Upload
           </button>
             
           <div class="form-group">
-            <label>Description</label>
-            <input type="text" class="form-control" placeholder="Say something about it..." ng-model="post.description">
+            <input type="text" class="form-control" placeholder="Say something about your photo..." ng-model="post.description">
           </div>
 
           <button type="submit" class="btn btn-primary">Post</button>
         </form>
 
-        <img ngf-src="picture.files[0]" ngf-accept="'image/*'" id="preview-image">
+        <img ngf-src="picture.files[0]" ngf-accept="'image/*'" id="preview-image" ng-show="picture.files[0] != null" width="auto">
         
       </div>
       

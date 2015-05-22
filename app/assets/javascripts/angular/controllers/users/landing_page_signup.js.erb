@@ -27,8 +27,10 @@ app.controller('SignupCtrl', ['$scope', '$http', '$location', function($scope, $
         $http.post(url + "users/sign_in", data2).success(function(response){
           console.log("You Are Now Signed In To Coconut...");
           console.log(response);
+          
+          $scope.current_user_id = response.current_user_id;
 
-          $location.path('/home');
+          $location.path('/users/' + $scope.current_user_id + '/profile/edit');
         });
       };
     });

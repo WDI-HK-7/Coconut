@@ -1,0 +1,54 @@
+app.controller('EditProfileCtrl', ['$scope', '$http', '$location', 'Upload', function($scope, $http, $location, Upload){
+  
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000/";
+  
+  $http.get(url + 'authenticated').success(function(response) {
+    
+    console.log(response);
+    
+    $scope.current_user_id = response.current_user_id
+    
+    if (!response.signed_in) {
+      $location.path('/');
+    }
+    else {
+      $http.get(url + 'users/' + $scope.current_user_id + '/profile').success(function(response) {
+
+        console.log(response);
+        $scope.profile.content     = response.content;
+        $scope.profile.first_name  = response.first_name;
+        $scope.profile.last_name   = response.last_name;
+        $scope.profile.username    = response.username;
+
+      });
+    }
+    
+  });
+  
+
+  $scope.profile = {};
+  $scope.form = {};
+  $scope.avatar = {};
+
+  $scope.form.create = function(){
+    var data = {
+        'profile[content]': $scope.profile.content,
+        'profile[first_name]': $scope.profile.first_name,
+        'profile[last_name]': $scope.profile.last_name,
+        'profile[username]': $scope.profile.username,
+        'profile[user_id]': $scope.current_user_id
+    };
+
+    Upload.upload({
+      url: url + 'users/profile',
+      method:'POST',
+      fields: data,
+      file: $scope.avatar.files[0],
+      fileFormDataName: 'profile[avatar]'
+    }).success(function(response){
+      console.log(response);
+      $location.path('/home');
+    });
+  };
+  
+}]);

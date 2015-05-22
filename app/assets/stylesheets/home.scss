@@ -21,10 +21,11 @@
 }
 
 #input-panel {
-  margin-top: 8em;
+  margin-top: 2em;
   position:fixed;
   z-index: 2000;
   left:20px;
+  box-shadow: 0 0 10px #000000;
 }
 
 #profile-panel {
@@ -50,7 +51,7 @@ small {
 }
 
 #feed {
-  margin-top: 8em;
+  margin-top: 2em;
 }
 
 #preview-image {
@@ -71,3 +72,16 @@ small {
   }
 }
 
+#profile-info {
+  padding-left: 0;
+}
+
+#upload-photo-button {
+  margin-bottom: 1em;
+}
+
+#edit-panel {
+  padding: 1em;
+  margin-top: 1em;
+  box-shadow: 0 0 10px #000000;
+}

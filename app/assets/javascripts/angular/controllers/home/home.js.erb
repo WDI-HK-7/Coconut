@@ -19,6 +19,7 @@ app.controller('HomeCtrl', ['$scope', '$http', '$location', 'Upload', function($
         
         $http.get(url + 'users/' + $scope.current_user_id + '/profile').success(function(response) {
           console.log(response);
+          console.log($scope.current_user_id);
           $scope.profile = response;
         });
         
