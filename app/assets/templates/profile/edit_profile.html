@@ -1,0 +1,81 @@
+<!--------------------------------------  Nav Bar                 -------------------------------------->
+<nav class="navbar navbar-default navbar-fixed-top">
+   
+    <div class="container-fluid">
+   
+    <div class="navbar-header">
+     
+<!--------------------------------------  Hamburger               -------------------------------------->
+     
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+    </div>
+
+<!----------------------  Elements available in collapsed Nav Bar -------------------------------------->
+   
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+     
+      <a id="welcome-message" ng-href="/#/home">Welcome to Coconut</a>
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#" ng-click="logout()">{{ profile.first_name + " " + profile.last_name }}</a></li>
+        <li><a href="#" ng-click="logout()">Log Out</a></li>
+      </ul>
+      
+<!----------------------  Elements in Dropdown Menu               -------------------------------------->
+
+    
+    </div>
+
+  </div>
+  
+</nav>
+
+
+<div class="container">
+  
+  <div id="edit-panel" class="panel panel-default col-xs-6 col-xs-offset-3">
+   
+    <form ng-submit="form.create()" ng-controller="EditProfileCtrl" >
+     
+      <div class="form-group">
+        <label>Username</label>
+        <input type="username" class="form-control" placeholder="Enter unique username..." ng-model="profile.username">
+      </div>
+      
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="first-name" class="form-control" placeholder="What is your first name?" ng-model="profile.first_name">
+      </div>
+      
+      <div class="form-group">
+        <label>Surname</label>
+        <input type="last-name" class="form-control" placeholder="What is your last name?" ng-model="profile.last_name">
+      </div>
+      
+      <div class="form-group">
+        <label>Summary</label>
+        <textarea type="last-name" class="form-control" placeholder="Give a small description of yourself..." ng-model="profile.content"></textarea>
+      </div>
+      
+      <div class="form-group">
+        <label>Profile Photo</label></br>
+        <button class="btn btn-success" ngf-select ng-model="avatar.files">
+          <span aria-hidden="true" class="glyphicon glyphicon-camera"></span> 
+          Upload
+        </button>
+      </div>
+
+      <img ngf-src="avatar.files[0]" ngf-accept="'image/*'" id="preview-image" ng-show="avatar.files[0] != null">
+      
+      <button type="submit" class="btn btn-primary">Save Profile</button>
+      
+    </form>   
+  </div>
+  
+</div>

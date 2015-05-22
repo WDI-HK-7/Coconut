@@ -54,6 +54,13 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
     when('/home', {
       templateUrl: "<%= asset_path('home/index.html') %>",
       controller: 'HomeCtrl'
+    }).
+  
+  // --------------- Edit Profile Page ----------------
+
+    when('/users/:id/profile/edit', {
+      templateUrl: "<%= asset_path('profile/edit_profile.html') %>",
+      controller: 'EditProfileCtrl'
     })
 
 }]);

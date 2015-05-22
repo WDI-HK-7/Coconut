@@ -30,7 +30,7 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @profile = User.find_by_id(params[:user_id]).profiles.first
+    @profile = User.find_by_id(params[:user_id]).profile
 
     if @profile.nil?
       render :json => {
