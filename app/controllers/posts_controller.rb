@@ -37,6 +37,7 @@ class PostsController < ApplicationController
 
     file = params[:post][:picture].tempfile
     exifr = EXIFR::JPEG.new(file)
+    puts "exifr -------------------- datetime: #{exifr.date_time} lon: #{exifr.gps_longitude} lat: #{exifr.gps_latitude}"
     
     converted = convert_coordinates_to_float(exifr)
 
@@ -47,10 +48,14 @@ class PostsController < ApplicationController
     @post.longitude = converted[:longitude]
     @post.latitude = converted[:latitude]
     @post.taken_at = exifr.date_time
+    puts "post file ----------------- #{@post.inspect}"
     
-    if @post.save
+    if @post.save!
+      puts "-------------------------------------saved----------------------------"
       render :json => { message: "saved", post: @post, photo: exifr }
     else
+      puts "---------------------------------not saved----------------------------"
+      puts @post.errors.full_messages
       render :json => { message: "not saved" }
     end
     
