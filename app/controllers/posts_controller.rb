@@ -34,11 +34,11 @@ class PostsController < ApplicationController
   end
   
   def create
-    # exifr.gps_longitude.nil?
+    
     converted = {}
     file = params[:post][:picture].tempfile
     exifr = EXIFR::JPEG.new(file)
-    if true
+    if exifr.gps_longitude.nil?
       puts "------------- exifr is empty"
       converted[:longitude] = params[:coordinates][:lon].to_f.round(6)
       converted[:latitude] = params[:coordinates][:lat].to_f.round(6)
