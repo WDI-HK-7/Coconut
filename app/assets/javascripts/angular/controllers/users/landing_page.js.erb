@@ -1,3 +1,21 @@
-app.controller('LandingPageCtrl', [function(){
-//Add dependencies later
+app.controller('LandingPageCtrl', ['$http', '$location', function($http, $location) {
+
+	var url = "<%= ENV['URL'] %>" || "http://localhost:3000/";
+
+	$http.get(url + "authenticated").success(function(response){
+
+		console.log(response);
+		console.log(response.signed_in);
+
+		var authentication = response; 
+
+		if (authentication.signed_in) {
+			$location.path('/home')
+		}
+		else {
+			$location.path('/')
+		}
+
+	});
+
 }]);

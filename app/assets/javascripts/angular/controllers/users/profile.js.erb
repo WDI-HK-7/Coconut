@@ -1,3 +1,33 @@
-app.controller('UserProfileCtrl', [function(){
+app.controller('UserProfileCtrl', ['$scope', '$http', function($scope, $http) {
+  $scope.posts = {};
+  $scope.form = {};
 
+  var url = "<%= ENV['URL'] %>" || "http://localhost:3000/";
+
+  $http.get(url + 'posts').success(function(response) {
+    console.log(response);
+    $scope.posts = response;
+  });
+
+  $scope.form.create = function(index) {
+		
+    var data = {
+      comment: {
+        content: $scope.posts[index].new_comment.content,
+        post_id: $scope.posts[index].id
+      }
+    };
+
+    $http.post(url + 'posts/' + $scope.posts[index].id + '/comments', data).success(function(response) {
+      console.log(response);
+
+      $scope.posts[index].comments.push(response.message.comment);
+      $scope.posts[index].new_comment.content = "";
+    });
+  };
+
+  $http.get(url + 'users/profile').success(function(response) {
+    $scope.profile = response;
+  })
+    
 }]);
