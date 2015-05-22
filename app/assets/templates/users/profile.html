@@ -23,7 +23,7 @@
       <a id="welcome-message" ng-href="/#/home">Welcome to Coconut</a>
       
       <ul ng-controller="GetProfileInfoCtrl" class="nav navbar-nav navbar-right">
-        <li><a ng-href="#/users/{{ authentication.current_user_id}}/profile/edit">{{ profile.first_name + " " + profile.last_name }}</a></li>
+        <li><a ng-href="#/users/{{ authentication.current_user_id }}/profile/edit">{{ profile.first_name + " " + profile.last_name }}</a></li>
         <li><a ng-click="logout()">Log Out</a></li>
       </ul>
       
