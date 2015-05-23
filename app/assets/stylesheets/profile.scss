@@ -5,8 +5,8 @@
 }
 
 .profile-description {
-  background-color: navy;
-  color: white; 
+  background-color: white;
+  color: black; 
   text-align: center;
   height: 250px
 }
@@ -17,19 +17,12 @@
 
 
 .user-profile-info {
-  width: 550px;
   margin: 0 auto;
   margin-top: 50px;
 }
 
 .posts-here {
   text-align: center;
-}
-
-.profile-container-fluid {
-  background-image: url('http://www.widewallpapers.ru/mod/backgrounds/1920x1200/background-wide-wallpaper-1920x1200-004.jpg');
-  background-repeat: repeat-y;
-  background-size: cover;
 }
 
 .container {
@@ -44,4 +37,9 @@
   margin-left: 0;
   height: 50px;
   // background-color: black;
+}
+
+#user-post {
+  margin-top: 1em;
+  margin-bottom: 1em;
 }

@@ -16,7 +16,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-@import url(http://fonts.googleapis.com/css?family=Pacifico);
+@import url(https://fonts.googleapis.com/css?family=Quicksand);
 
 .navbar-default {
   background-color: #965A3E;
@@ -25,4 +25,10 @@
 
 #navbar-collapse > ul > li > a {
   color: white;
+}
+
+@media (max-width: 768px) {
+  .navbar-collapse {
+    background-color: #965A3E;
+  }
 }

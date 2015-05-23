@@ -3,7 +3,15 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .navbar, .container {
-  font-family: 'Pacifico', cursive;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.navbar, .navbar-nav > li > a {
+  height: 50px;
+}
+
+.navbar-nav > li > a {
+  cursor: pointer;
 }
 
 #icon {
@@ -45,7 +53,6 @@ small {
 
 #welcome-message {
   vertical-align: middle;
-  padding-top: 2em;
   color: white;
   font-size: 2em;
 }
@@ -84,4 +91,8 @@ small {
   padding: 1em;
   margin-top: 1em;
   box-shadow: 0 0 10px #000000;
+}
+
+#upload {
+  margin-bottom: 1em;
 }

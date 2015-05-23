@@ -28,7 +28,7 @@ class PostsController < ApplicationController
     if post.taken_at > (timezone.time(Time.now) - 1.hour)
       @posts = live_feed(post.id, search_radius)
     else
-      @posts = Post.all.includes(:comments)
+      @posts = Post.all.order(taken_at: :desc).includes(:comments)
     end
     
   end
