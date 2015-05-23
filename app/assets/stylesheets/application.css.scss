@@ -26,3 +26,9 @@
 #navbar-collapse > ul > li > a {
   color: white;
 }
+
+@media (max-width: 768px) {
+  .navbar-collapse {
+    background-color: #965A3E;
+  }
+}

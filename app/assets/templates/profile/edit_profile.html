@@ -13,18 +13,17 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+        <a class="navbar-brand" id="welcome-message" ng-href="/#/home">Coconut</a>
       
     </div>
 
 <!----------------------  Elements available in collapsed Nav Bar -------------------------------------->
    
     <div class="collapse navbar-collapse" id="navbar-collapse">
-     
-      <a id="welcome-message" ng-href="/#/home">Welcome to Coconut</a>
       
       <ul class="nav navbar-nav navbar-right">
         <li><a ng-href="#/users/{{current_user_id}}/profile">{{ profile.first_name + " " + profile.last_name }}</a></li>
-        <li><a href="#" ng-click="logout()">Log Out</a></li>
+        <li><a ng-click="logout()">Log Out</a></li>
       </ul>
       
 <!----------------------  Elements in Dropdown Menu               -------------------------------------->
@@ -39,7 +38,7 @@
 
 <div class="container">
   
-  <div id="edit-panel" class="panel panel-default col-xs-6 col-xs-offset-3">
+  <div id="edit-panel" class="panel panel-default col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
    
     <form ng-submit="form.create()" ng-controller="EditProfileCtrl" >
      

@@ -6,6 +6,14 @@
   font-family: 'Quicksand', sans-serif;
 }
 
+.navbar, .navbar-nav > li > a {
+  height: 50px;
+}
+
+.navbar-nav > li > a {
+  cursor: pointer;
+}
+
 #icon {
   width: 5%;
   height: 100%;
@@ -45,7 +53,6 @@ small {
 
 #welcome-message {
   vertical-align: middle;
-  padding-top: 2em;
   color: white;
   font-size: 2em;
 }

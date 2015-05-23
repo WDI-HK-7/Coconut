@@ -13,17 +13,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+        <a class="navbar-brand" id="welcome-message" ng-href="/#/home">Coconut</a>
       
     </div>
 
 <!----------------------  Elements available in collapsed Nav Bar -------------------------------------->
    
     <div class="collapse navbar-collapse" id="navbar-collapse">
-     
-      <a id="welcome-message" ng-href="/#/home">Welcome to Coconut</a>
       
       <ul ng-controller="GetProfileInfoCtrl" class="nav navbar-nav navbar-right">
-        <li><a ng-href="#/users/{{ authentication.current_user_id }}/profile/edit">{{ profile.first_name + " " + profile.last_name }}</a></li>
+        <li><a ng-href="#/users/{{ authentication.current_user_id }}/profile/edit">Edit Profile</a></li>
         <li><a ng-click="logout()">Log Out</a></li>
       </ul>
       
@@ -41,23 +40,24 @@
     
      <div class="row">
       <div class="row profile-description">
-          <div class="user-profile-info" ng-controller="GetProfileInfoCtrl">
-
-            <div class="avatar-container col-xs-4">
-              <img ng-src="{{ profile.avatar }}" class="img-responsive" id="profile-avatar">
-            </div>
-            <div class="profile-name-content col-xs-8">
-              Name: 
-              {{ profile.first_name + " " + profile.last_name }}
-              <br>
-              <br>
-              Username:
-              {{ profile.username }}
-              <br>
-              <br>
-              Description: <br>
-              {{ profile.content }}
-              <br>
+          <div class="user-profile-info col-xs-12 col-sm-8 col-sm-offset-2" ng-controller="GetProfileInfoCtrl">
+            <div class="col-xs-12">
+              <div class="avatar-container col-xs-4">
+                <img ng-src="{{ profile.avatar }}" class="img-responsive" id="profile-avatar">
+              </div>
+              <div class="profile-name-content col-xs-8">
+                Name: 
+                {{ profile.first_name + " " + profile.last_name }}
+                <br>
+                <br>
+                Username:
+                {{ profile.username }}
+                <br>
+                <br>
+                Description: <br>
+                {{ profile.content }}
+                <br>
+              </div>
             </div>
 
           </div>
@@ -65,7 +65,7 @@
     </div>
 
       <ul class="list-group" id="profile-posts" ng-repeat="post in posts">
-        <div class="col-xs-12 col-sm-6 col-sm-offset-3" id="user-post">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2" id="user-post">
           
           <li class="list-group-item"><strong>{{ post.description }}</strong></li>
           <li class="list-group-item"><img class="img-responsive" ng-src="{{ post.picture }}"></li>

@@ -50,5 +50,12 @@ app.controller('EditProfileCtrl', ['$scope', '$http', '$location', 'Upload', fun
       $location.path('/home');
     });
   };
+
+  $scope.logout = function(){
+    $http.delete(url + 'users/sign_out').success(function(response) {
+      console.log(response);
+      $location.path('');
+    });
+  };
   
 }]);

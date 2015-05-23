@@ -15,5 +15,11 @@ app.controller('GetProfileInfoCtrl', ['$scope', '$http', '$location',  function(
     } else {
       $location.path('/')
     }
+    $scope.logout = function(){
+      $http.delete(url + 'users/sign_out').success(function(response) {
+        console.log(response);
+        $location.path('');
+      });
+    };
   });
 }]);
