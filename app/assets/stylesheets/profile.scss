@@ -1,5 +1,4 @@
 #profile-posts {
-  font-size: 18px;
   width: auto;
   height: auto;
 }
@@ -15,6 +14,9 @@
   height: 150px;
 }
 
+.avatar-container {
+  border-right: 1px solid black;
+}
 
 .user-profile-info {
   margin: 0 auto;
