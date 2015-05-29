@@ -31,6 +31,8 @@ gem 'exifr'
 # Use timezone to get local time of picture taken for live feed
 gem 'timezone'
 
+# rack-cors for CORS ajax requests
+gem 'rack-cors', :require => 'rack/cors'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
