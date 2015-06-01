@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def around
     post = Post.find_by_id(params[:id])
     @posts = Post.where("latitude > ?" , post.latitude - 0.001).where("latitude < ?" , post.latitude + 0.001).where("longitude > ?" , post.longitude - 0.001).where("longitude < ?" , post.longitude + 0.001)
@@ -23,43 +23,54 @@ class PostsController < ApplicationController
     if post.nil?
       return @posts = Post.all.includes(:comments)
     end
-    
+
     timezone = Timezone::Zone.new :zone => post.timezone
     if post.taken_at > (timezone.time(Time.now) - 1.hour)
       @posts = live_feed(post.id, search_radius)
     else
       @posts = Post.all.order(taken_at: :desc).includes(:comments)
     end
-    
+
   end
-  
+
   def create
-    
+
     converted = {}
     file = params[:post][:picture].tempfile
     exifr = EXIFR::JPEG.new(file)
     if exifr.gps_longitude.nil?
       puts "------------- exifr is empty"
-      converted[:longitude] = params[:coordinates][:lon].to_f.round(6)
-      converted[:latitude] = params[:coordinates][:lat].to_f.round(6)
+
+      if !params[:coordinates].nil?
+        puts "------------- exifr is empty but geolocation is sent from browser"
+        converted[:longitude] = params[:coordinates][:lon].to_f.round(6)
+        converted[:latitude]  = params[:coordinates][:lat].to_f.round(6)
+      else # We conve
+        puts "------------- exifr is empty && not geolocation sent from browser | defaults to hk"
+        converted[:longitude] = 22.2478599
+        converted[:latitude]  = 114.20338429999993
+      end
     else
+      puts "------------- exifr is not empty, extract"
       converted = convert_coordinates_to_float(exifr)
-      puts "------------- exifr is not empty"
     end
+
     puts "exifr -------------------- datetime: #{exifr.date_time} lon: #{exifr.gps_longitude} lat: #{exifr.gps_latitude}"
-    
-    
 
     @post = current_user.posts.new(post_params)
 
-    timezone = Timezone::Zone.new :latlon => [converted[:latitude], converted[:longitude]]
+    begin
+      timezone = Timezone::Zone.new :latlon => [converted[:latitude], converted[:longitude]]
+    rescue Exception => e
+      timezone = Timezone::Zone.new :zone => 'hongkong'
+    end
     @post.timezone = timezone.zone
     @post.longitude = converted[:longitude]
     @post.latitude = converted[:latitude]
     @post.taken_at = exifr.date_time || timezone.time(Time.now)
     puts "---------------#{@post.taken_at}"
     puts "post file ----------------- #{@post.inspect}"
-    
+
     if @post.save!
       puts "-------------------------------------saved----------------------------"
       render :json => { message: "saved", post: @post, photo: exifr }
@@ -68,25 +79,25 @@ class PostsController < ApplicationController
       puts @post.errors.full_messages
       render :json => { message: "not saved" }
     end
-    
+
   end
-  
+
   def show
-    
+
     @post = Post.find_by_id(params[:id])
-    
+
     if @post.nil?
       render :json => {
         message: "Can't find post with id #{params[:id]}"
       }
     end
-  
+
   end
 
   def update
-    
+
     @post = Post.find_by_id(params[:id])
-    
+
     if @post.user == current_user
       if @post.nil?
         render :json => {
@@ -104,13 +115,13 @@ class PostsController < ApplicationController
         message: "You are not authorized!"
       }
     end
-  
+
   end
 
   def destroy
-    
+
     @post = Post.find_by_id(params[:id])
-    
+
     if @post.nil?
       render :json => {
         message: "Can't find post with id #{params[:id]}"
@@ -128,15 +139,15 @@ class PostsController < ApplicationController
     end
 
   end
-  
+
   private
-  
+
   def post_params
     params.require(:post).permit(:description, :picture)
   end
 
   def convert_to_decimal(coordinates)
-    (coordinates[0].to_r.to_f + ( coordinates[1].to_r.to_f / 60 ) + (coordinates[2].to_r.to_f / 3600 )).round(6)  
+    (coordinates[0].to_r.to_f + ( coordinates[1].to_r.to_f / 60 ) + (coordinates[2].to_r.to_f / 3600 )).round(6)
   end
 
   def convert_coordinates_to_float(metadata)

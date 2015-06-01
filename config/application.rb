@@ -8,11 +8,14 @@ Bundler.require(*Rails.groups)
 
 module Coconut
   class Application < Rails::Application
-    
+
     Timezone::Configure.begin do |c|
-      c.username = 'xiaopow'
+      c.google_api_key = 'AIzaSyABoGyY7C7llq1U1VTn0140xWVD95zun8I'
     end
-    
+
+    config.time_zone = 'Hong Kong'
+
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
